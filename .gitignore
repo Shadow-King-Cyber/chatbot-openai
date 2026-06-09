@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+
+# Entorno virtual
+.venv/
+venv/
+env/
+
+# Variables de entorno (datos privados)
+.env
+
+# Editores / Sistema operativo
+.vscode/
+.idea/
+*.code-workspace
+.DS_Store
+*.swp
