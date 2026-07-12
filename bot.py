@@ -53,7 +53,7 @@ def main() -> None:
             messages.pop()  # descarta el mensaje que no se pudo responder
             continue
 
-        answer = response.choices[0].message.content
+        answer = response.choices[0].message.content or "(sin respuesta)"
         messages.append({"role": "assistant", "content": answer})
         print(f"Bot: {answer}\n")
 
