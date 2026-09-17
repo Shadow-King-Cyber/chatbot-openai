@@ -3,7 +3,7 @@ import os
 from pathlib import Path
 
 from dotenv import load_dotenv
-from openai import OpenAI, OpenAIError
+from openai import AuthenticationError, OpenAI, OpenAIError
 
 # Carga el .env que está junto a este archivo (no depende del directorio actual)
 load_dotenv(Path(__file__).resolve().parent / ".env")
@@ -48,6 +48,10 @@ def main() -> None:
                 model=MODEL,
                 messages=messages,
             )
+        except AuthenticationError as error:
+            print(f"Error de autenticación: la API key es inválida o venció. ({error})\n")
+            messages.pop()  # descarta el mensaje que no se pudo responder
+            continue
         except OpenAIError as error:
             print(f"Error al llamar a la API: {error}\n")
             messages.pop()  # descarta el mensaje que no se pudo responder
